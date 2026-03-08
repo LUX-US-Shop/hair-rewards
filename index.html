@@ -239,7 +239,7 @@
 
   <!-- LEFT: Shein -->
   <a href="https://afflat3c1.com/trk/lnk/80DBA135-99F1-423A-BFAD-362D7DE2F22F/?o=30674&c=918277&a=785920&k=DA356B5249290555A1B9DD5D45E3AA96&l=35198&s1=pinterest&s2=acc6"
-     class="half left" id="leftHalf">
+     class="half left" id="leftHalf" onclick="trackClick('hair-rewards','Shein_750','acc6','30674')">
     <img class="bg" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdC
 IFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAA
 AADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlk
@@ -4094,7 +4094,7 @@ rNHbr5Q22fX2osgYn8yLWRtkHmhxgjUgU6c5BY7rQaS6DbfZ/9k=" alt="Hair">
 
   <!-- RIGHT: Sephora -->
   <a href="https://afflat3c2.com/trk/lnk/80DBA135-99F1-423A-BFAD-362D7DE2F22F/?o=25408&c=918277&a=785920&k=5CBFF1D0E031B44EDD88D710F2E25BBF&l=26617&s1=pinterest&s2=acc8"
-     class="half right" id="rightHalf">
+     class="half right" id="rightHalf" onclick="trackClick('hair-rewards','Sephora_500','acc8','25408')">
     <img class="bg" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdC
 IFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAA
 AADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlk
@@ -8504,5 +8504,8 @@ um6Gym6LR0H5HGgB1rjRPx+d0Oy1+qIiB3PuRQJBUErgbJ8SOJTUAt5qSpqYWD3K8ItmXJOMeWf/
     }, { passive: false });
   });
 </script>
-</body>
+<script>
+var GS_URL = "https://script.google.com/macros/s/AKfycbzdeXJryOigbdw927k4uMu5u2TMb5x2543BjKkmiBSiv_5XCxnTC3LlNdG7wT59_89U/exec";
+function trackClick(l,o,a,i){try{var d=/Mobi|Android/i.test(navigator.userAgent)?"mobile":"desktop";fetch(GS_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({landing:l,offer:o,acc:a,offer_id:i,utm_source:"pinterest",device:d,ref:document.referrer||"",ts:new Date().toISOString()})});}catch(e){}}
+</script></body>
 </html>
