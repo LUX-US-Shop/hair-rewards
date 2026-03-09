@@ -53,7 +53,7 @@
   }
   .half.left  img.bg { object-position: center 15%; }
   .half.right img.bg { object-position: center 10%; }
-  .half:hover img.bg { transform: scale(1.06); filter: brightness(0.72) saturate(1.25); }
+  .half:hover img.bg { transform: scale(1.02); filter: brightness(0.72) saturate(1.25); }
 
   .half-tint {
     position: absolute; inset: 0; z-index: 1;
@@ -223,7 +223,61 @@
     .half-content { opacity: 1; transform: none; }
     .half-btn { transform: scale(1); }
   }
-</style>
+
+  /* === PERFORMANCE FIXES === */
+  .half {
+    will-change: flex;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  .half img.bg {
+    will-change: transform, filter;
+    transform: translateZ(0) scale(1.0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  .split-screen:hover .half:not(:hover) img.bg {
+    transform: translateZ(0) scale(1.0);
+  }
+  .half:hover img.bg {
+    transform: translateZ(0) scale(1.02) !important;
+  }
+  /* === STARS === */
+  .half-stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 6px 0 4px;
+    justify-content: center;
+  }
+  .stars-icon { color: #FFD700; font-size: 13px; letter-spacing: 1px; }
+  .stars-text { color: rgba(255,255,255,0.75); font-size: 11px; }
+  /* === SOCIAL PROOF === */
+  .half-social {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    margin-top: 6px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.5px;
+  }
+  .social-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 6px #4ade80;
+    animation: socialPulse 1.5s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes socialPulse {
+    0%,100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.6; }
+  }
+  /* === RED TIMER === */
+  .timer-red { color: #ff4444 !important; font-weight: 700 !important; }
+
+  </style>
 </head>
 <body>
 
@@ -4088,7 +4142,9 @@ rNHbr5Q22fX2osgYn8yLWRtkHmhxgjUgU6c5BY7rQaS6DbfZ/9k=" alt="Hair">
         <div class="spot-dot"></div>
         <span><strong>29 spots</strong> remaining today</span>
       </div>
-      <button class="half-btn">Claim Free &#8594;</button>
+      <button class="half-btn">Claim My $750 Gift →</button>
+      <div class="half-stars"><span class="stars-icon">★★★★½</span><span class="stars-text">4.7 (8,820 reviews)</span></div>
+      <div class="half-social"><span class="social-dot"></span><span>2,341 claimed today</span></div>
     </div>
   </a>
 
@@ -8443,7 +8499,9 @@ um6Gym6LR0H5HGgB1rjRPx+d0Oy1+qIiB3PuRQJBUErgbJ8SOJTUAt5qSpqYWD3K8ItmXJOMeWf/
         <div class="spot-dot"></div>
         <span><strong>41 spots</strong> remaining today</span>
       </div>
-      <button class="half-btn">Claim Free &#8594;</button>
+      <button class="half-btn">Claim My $500 Gift →</button>
+      <div class="half-stars"><span class="stars-icon">★★★★½</span><span class="stars-text">4.9 (5,102 reviews)</span></div>
+      <div class="half-social"><span class="social-dot"></span><span>1,089 claimed today</span></div>
     </div>
   </a>
 
@@ -8507,5 +8565,25 @@ um6Gym6LR0H5HGgB1rjRPx+d0Oy1+qIiB3PuRQJBUErgbJ8SOJTUAt5qSpqYWD3K8ItmXJOMeWf/
 <script>
 var GS_URL = "https://script.google.com/macros/s/AKfycbzdeXJryOigbdw927k4uMu5u2TMb5x2543BjKkmiBSiv_5XCxnTC3LlNdG7wT59_89U/exec";
 function trackClick(l,o,a,i){try{var d=/Mobi|Android/i.test(navigator.userAgent)?"mobile":"desktop";fetch(GS_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({landing:l,offer:o,acc:a,offer_id:i,utm_source:"pinterest",device:d,ref:document.referrer||"",ts:new Date().toISOString()})});}catch(e){}}
-</script></body>
+</script>  <script>
+  // Red timer when < 1 hour
+  (function() {
+    function checkTimerRed() {
+      ['timer1','timer2'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var txt = el.textContent;
+        var parts = txt.split(':');
+        if (parts.length >= 3) {
+          var h = parseInt(parts[0]);
+          if (h < 1) { el.classList.add('timer-red'); }
+          else { el.classList.remove('timer-red'); }
+        }
+      });
+    }
+    setInterval(checkTimerRed, 1000);
+    checkTimerRed();
+  })();
+  </script>
+</body>
 </html>
